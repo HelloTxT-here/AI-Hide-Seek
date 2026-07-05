@@ -1,20 +1,53 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# 🕶️ AI Hide-and-Seek (AI-Hide-Seek)
 
-# Run and deploy your AI Studio app
+A web-based 2D multi-agent simulation where 4 autonomous AI agents play the classic game of Hide and Seek. Over thousands of generations, the agents evolve their survival and tracking strategies using a combination of **Feedforward Neural Networks** and **Genetic Algorithms**.
 
-This contains everything you need to run your app locally.
+---
 
-View your app in AI Studio: https://ai.studio/apps/5e128258-dc5a-4f98-b827-1e600ab1bf0c
+## ⚙️ How It Works
 
-## Run Locally
+The simulation pits **Seekers** against **Hiders** in a bounded environment with obstacles. The brain of each agent is controlled by an artificial neural network running in the browser, and their behaviors are optimized over time through evolutionary pressure.
 
-**Prerequisites:**  Node.js
+### 🧠 The Core Architecture
 
+1. **Neural Network (The Brain):**
+   * **Inputs:** Distance and angle to the nearest walls, obstacles, opponents, and teammates (Raycasting/egocentric vision paths).
+   * **Outputs:** Continuous vectors for movement (Linear Velocity, Angular Velocity/Steering direction).
+2. **Genetic Algorithm (The Evolution):**
+   * **Fitness Function:**
+     * **Hiders:** Rewarded for staying unseen, surviving the round, and maintaining distance from Seekers.
+     * **Seekers:** Rewarded for catching Hiders quickly, minimizing time taken, and cooperative hunting/pinning strategies.
+   * **Selection & Reproduction:** Top-performing agents are selected using evolutionary selection metrics. Their weights are crossed over and subjected to random mutations to form the next generation's brain population.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+---
+
+## 🚀 Features
+
+* **Real-time Browser Evolution:** Watch agents transition from completely random movement to complex tactical behaviors right in your browser.
+* **Dynamic Environment:** Randomized obstacle and agent spawn points to prevent memorization and enforce generalized spatial learning.
+* **Neural Network Visualizer:** Real-time rendering of the active paths, weights, and nodes of the top-performing agent's brain.
+* **Customization:** Easily tweak population sizes, mutation rates, game duration, and layer sizes directly via configuration values.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Runtime/Bundler:** Vite + TypeScript
+* **Frontend/Rendering:** HTML5 Canvas / WebGL
+* **State Management/Math:** Vector mathematics written natively in TypeScript for optimized matrix operations.
+
+---
+
+## 📁 Repository Structure
+
+```text
+├── src/                  # Application source code (Components, Simulation, NN, GA)
+├── .env.example          # Example environment configuration file
+├── .gitignore            # Git ignore file
+├── index.html            # Main entrypoint webpage
+├── metadata.json         # Project or configuration metadata
+├── package.json          # Node dependencies and scripts
+├── package-lock.json     # Locked versions of dependencies
+├── tsconfig.json         # TypeScript configuration
+├── vite.config.ts        # Vite bundler configuration
+└── README.md             # This file
