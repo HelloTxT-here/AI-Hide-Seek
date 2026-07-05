@@ -1,0 +1,5 @@
+{
+  "name": "AI Hide & Seek",
+  "description": "A simulation of 4 AI agents playing hide and seek, evolving over time using neural networks and genetic algorithms.",
+  "requestFramePermissions": []
+}
